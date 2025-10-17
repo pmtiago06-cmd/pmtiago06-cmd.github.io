@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Perguntas Sim ou Não</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 350px;
+    }
+
+    button {
+      font-size: 18px;
+      margin: 10px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 id="pergunta">achas o sin, cos e tan inutil no nosso dia a dia?</h2>
+    <div>
+      <button class="yes" id="botaoSim" onclick="responder(true)">Sim</button>
+      <button class="no" id="botaoNao" onclick="responder(false)">Não</button>
+    </div>
+  </div>
+
+  <script>
+    const perguntas = [
+      "achas o sin, cos e tan inutil no nosso dia a dia?",
+      "Sabes quem é o baldman👨‍🦲?",
+      "achas q eu sou chato?",
+      "estás pronta para a ultima pergunta?",
+      "Queres ser minha madrinha???"
+    ];
+
+    let indice = 0;
+    const perguntaEl = document.getElementById("pergunta");
+    const botaoNao = document.getElementById("botaoNao");
+    const botaoSim = document.getElementById("botaoSim");
+
+    function responder(sim) {
+      if (sim) {
+	if (indice === 2) {
+         	//nada
+        }
+	else{
+        	indice++;
+	}
+        if (indice < perguntas.length) {
+          perguntaEl.textContent = perguntas[indice];
+        } 
+	else {
+          perguntaEl.textContent = "obrigado por aceitares 🥳🫶";
+          botaoNao.style.display = "none";
+	  botaoSim.style.display = "none";
+        }
+      } else {
+        if (indice === perguntas.length - 1) {
+          // Na última pergunta, o botão "Não" foge
+          botaoNao.style.position = "absolute";
+          botaoNao.style.left = Math.random() * window.innerWidth * 0.8 + "px";
+          botaoNao.style.top = Math.random() * window.innerHeight * 0.8 + "px";
+        } 
+	else if(indice == 3){
+		do{
+			let notOK = confirm("Clica OK para confirmar");
+		}while(notOK)
+	}
+	else {
+       		indice++;
+		perguntaEl.textContent = perguntas[indice];
+
+        }
+      }
+    }
+  </script>
+</body>
+</html>
